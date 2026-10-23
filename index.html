@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Hub - Local Network Arcade</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+      min-height: 100vh;
+      color: #eaeaea;
+      padding: 2rem;
+    }
+    .container { max-width: 1000px; margin: 0 auto; }
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
+    }
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #00d4ff, #ff6b6b, #ffd93d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: #8892b0;
+      font-size: 1.1rem;
+    }
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .game-card {
+      background: rgba(22, 33, 62, 0.8);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .game-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    .game-card:hover::before {
+      transform: scaleX(1);
+    }
+    .game-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      background: var(--accent-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .game-card h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .game-card p {
+      color: #8892b0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .game-tags {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 0.7rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(0, 212, 255, 0.15);
+      color: #00d4ff;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tag.local { background: rgba(255, 107, 107, 0.15); color: #ff6b6b; }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      color: #4a5568;
+      font-size: 0.85rem;
+    }
+    @media (prefers-color-scheme: light) {
+      body { background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%); color: #1a1a2e; }
+      .game-card { background: rgba(255,255,255,0.9); border-color: rgba(0, 212, 255, 0.3); }
+      .game-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+      .subtitle { color: #64748b; }
+      footer { color: #94a3b8; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎮 Game Hub</h1>
+      <p class="subtitle">Local Network Arcade — Play instantly, no install needed</p>
+    </header>
+    
+    <div class="games-grid">
+      <a href="2048-game/" class="game-card" style="--accent: #00d4ff; --accent-bg: rgba(0, 212, 255, 0.15);">
+        <div class="game-icon">2048</div>
+        <h2>2048</h2>
+        <p>Slide tiles, merge numbers, reach 2048. The addictive puzzle classic by Gabriele Cirulli.</p>
+        <div class="game-tags">
+          <span class="tag">Puzzle</span>
+          <span class="tag local">Offline Ready</span>
+        </div>
+      </a>
+      
+      <a href="snake-game/client/" class="game-card" style="--accent: #ff6b6b; --accent-bg: rgba(255, 107, 107, 0.15);">
+        <div class="game-icon">🐍</div>
+        <h2>Snake</h2>
+        <p>Classic arcade action — eat, grow, don't hit yourself. Smooth HTML5 canvas implementation.</p>
+        <div class="game-tags">
+          <span class="tag">Arcade</span>
+          <span class="tag local">Offline Ready</span>
+        </div>
+      </a>
+      
+      <a href="tetris-game2/" class="game-card" style="--accent: #ffd93d; --accent-bg: rgba(255, 217, 61, 0.15);">
+        <div class="game-icon">⬜</div>
+        <h2>Tetris</h2>
+        <p>Timeless block-stacking action. Responsive canvas renderer with next-piece preview and scoring.</p>
+        <div class="game-tags">
+          <span class="tag">Arcade</span>
+          <span class="tag local">Offline Ready</span>
+        </div>
+      </a>
+      
+      <a href="tetris-game/" class="game-card" style="--accent: #6bcb77; --accent-bg: rgba(107, 203, 119, 0.15);">
+        <div class="game-icon">🧱</div>
+        <h2>React Tetris</h2>
+        <p>Modern React implementation with Redux state management. Features hold piece, ghost preview, and touch controls.</p>
+        <div class="game-tags">
+          <span class="tag">Modern</span>
+          <span class="tag">Requires Build</span>
+        </div>
+      </a>
+
+      <a href="eaglercraft.html" class="game-card" style="--accent: #2ecc71; --accent-bg: rgba(46, 204, 113, 0.15);">
+        <div class="game-icon">⛏️</div>
+        <h2>Eaglercraft 26.2</h2>
+        <p>Minecraft 1.12.2 in your browser — full singleplayer, multiplayer, skins, servers. WASM port via TeaVM.</p>
+        <div class="game-tags">
+          <span class="tag">Sandbox</span>
+          <span class="tag local">Offline Ready</span>
+        </div>
+      </a>
+    </div>
+    
+    <footer>
+      Served from local network • Press arrow keys / WASD to play • <a href="#" style="color: #00d4ff;">Report Issue</a>
+    </footer>
+  </div>
+</body>
+</html>
